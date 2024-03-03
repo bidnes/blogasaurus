@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, EmailField, PasswordField
-from wtforms.validators import DataRequired, URL, Email
+from wtforms import StringField, SubmitField, PasswordField
+from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 
 
@@ -13,20 +13,22 @@ class CreatePostForm(FlaskForm):
     submit = SubmitField("Submit Post")
 
 
-
+# Create a form to register new users
 class RegisterForm(FlaskForm):
-    name = StringField("Full name:", validators=[DataRequired()])
-    email = EmailField("e-mail:", validators=[DataRequired(), Email()])
-    password = PasswordField("Password:", validators=[DataRequired()])
-    submit = SubmitField("Register")
+    email = StringField("Email", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    name = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Sign Me Up!")
 
 
+# Create a form to login existing users
 class LoginForm(FlaskForm):
-    email = EmailField("e-mail:", validators=[DataRequired(), Email()])
-    password = PasswordField("Password:", validators=[DataRequired()])
-    submit = SubmitField("Login")
+    email = StringField("Email", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    submit = SubmitField("Let Me In!")
 
 
+# Create a form to add comments
 class CommentForm(FlaskForm):
-    text = CKEditorField("User Comment", validators=[DataRequired()])
+    comment_text = CKEditorField("Comment", validators=[DataRequired()])
     submit = SubmitField("Submit Comment")
